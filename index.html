@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raja Firmansyah – Graphic Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0A0A0C; --bg2: #111116; --bg3: #18181F;
+    --accent: #C8A96E; --accent2: #E2C99A;
+    --text: #F0EDE6; --muted: #7A7770;
+    --border: rgba(200,169,110,0.15);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: rgba(10,10,12,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: var(--serif); font-size: 18px; letter-spacing: 0.04em; color: var(--accent); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; transition: color .25s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  section { padding: 100px 48px; max-width: 1100px; margin: 0 auto; }
+
+  #hero {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding-top: 120px; position: relative; max-width: 100%;
+  }
+  #hero::before {
+    content: ''; position: absolute; top: 20%; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200,169,110,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+  .hero-tag {
+    display: inline-block; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--accent);
+    padding: 6px 16px; border-radius: 999px; margin-bottom: 32px;
+  }
+  .hero-name {
+    font-family: var(--serif); font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .hero-name span { color: var(--accent); }
+  .hero-sub { font-size: 16px; color: var(--muted); max-width: 520px; margin-bottom: 12px; line-height: 1.8; }
+  .hero-sub2 { font-size: 13px; color: var(--muted); opacity: 0.6; max-width: 480px; margin-bottom: 48px; }
+  .hero-cta { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    display: inline-block; padding: 14px 32px; background: var(--accent);
+    color: #0A0A0C; font-family: var(--sans); font-size: 13px; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+    border-radius: 4px; transition: background .25s, transform .2s; cursor: pointer; border: none;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-ghost {
+    font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--muted);
+    padding-bottom: 2px; transition: color .25s, border-color .25s;
+    cursor: pointer; background: none; border-top: none; border-left: none; border-right: none;
+  }
+  .btn-ghost:hover { color: var(--text); border-color: var(--text); }
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 48px;
+    display: flex; align-items: center; gap: 12px;
+    color: var(--muted); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  .scroll-line { width: 48px; height: 1px; background: var(--muted); animation: scrollLine 2s ease-in-out infinite; }
+  @keyframes scrollLine { 0%,100%{transform:scaleX(1)} 50%{transform:scaleX(0.5)} }
+
+  .section-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .section-title { font-family: var(--serif); font-size: clamp(32px, 5vw, 52px); font-weight: 700; line-height: 1.1; margin-bottom: 48px; }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-text p { color: var(--muted); margin-bottom: 20px; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-badge {
+    display: inline-block; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(200,169,110,0.1); color: var(--accent);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 4px 10px; margin-right: 8px; margin-bottom: 8px;
+  }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 24px; }
+  .stat-num { font-family: var(--serif); font-size: 36px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+
+  #skills { background: var(--bg2); max-width: 100%; padding: 100px 0; }
+  .skills-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .skill-card {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 32px;
+    transition: border-color .3s, transform .3s; cursor: default;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .skill-icon { width: 40px; height: 40px; background: rgba(200,169,110,0.1); border-radius: 8px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: var(--accent); }
+  .skill-name { font-family: var(--serif); font-size: 18px; margin-bottom: 8px; }
+  .skill-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .skill-bar-wrap { margin-top: 16px; height: 2px; background: rgba(255,255,255,0.07); border-radius: 1px; }
+  .skill-bar { height: 100%; background: var(--accent); border-radius: 1px; transition: width 1.2s ease; width: 0; }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .project-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color .3s, transform .3s; cursor: pointer; }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .project-thumb { height: 200px; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 48px; color: var(--accent); position: relative; overflow: hidden; }
+  .thumb-1 { background: linear-gradient(135deg, #0F0F14, #1A1520); }
+  .thumb-2 { background: linear-gradient(135deg, #0A0E14, #101820); }
+  .thumb-3 { background: linear-gradient(135deg, #120F10, #1C1216); }
+  .thumb-4 { background: linear-gradient(135deg, #0D0F0A, #14180E); }
+  .thumb-pattern { position: absolute; top:0;left:0;right:0;bottom:0; opacity:0.3; background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(200,169,110,0.08) 20px, rgba(200,169,110,0.08) 21px); }
+  .project-info { padding: 24px; }
+  .project-cat { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .project-name { font-family: var(--serif); font-size: 20px; margin-bottom: 8px; }
+  .project-desc { font-size: 13px; color: var(--muted); }
+
+  #contact { background: var(--bg2); max-width: 100%; }
+  .contact-inner { max-width: 1100px; margin: 0 auto; padding: 100px 48px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .form-input, .form-textarea {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 4px;
+    padding: 12px 16px; color: var(--text); font-family: var(--sans); font-size: 14px;
+    transition: border-color .25s; outline: none;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .contact-info { display: flex; flex-direction: column; gap: 28px; }
+  .contact-item { display: flex; flex-direction: column; gap: 4px; }
+  .contact-item-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .contact-item-val { font-size: 15px; color: var(--text); }
+  .contact-item-val a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); transition: border-color .2s, color .2s; }
+  .contact-item-val a:hover { color: var(--accent); border-color: var(--accent); }
+  .social-links { display: flex; gap: 12px; margin-top: 8px; }
+  .social-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); border: 1px solid var(--border);
+    padding: 8px 14px; border-radius: 4px; text-decoration: none;
+    transition: color .25s, border-color .25s;
+  }
+  .social-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+  footer { text-align: center; padding: 32px 48px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; letter-spacing: 0.06em; }
+
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">RF.</div>
+  <ul class="nav-links">
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#skills">Keahlian</a></li>
+    <li><a href="#projects">Proyek</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+</nav>
+
+<div id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag fade-in">Graphic Designer · OPPO Indonesia</div>
+    <h1 class="hero-name fade-in">Raja<br><span>Firmansyah.</span></h1>
+    <p class="hero-sub fade-in">Merancang visual yang berbicara — dari layar hingga kehidupan nyata.</p>
+    <p class="hero-sub2 fade-in">Graphic Designer di OPPO · Batam, Kepulauan Riau</p>
+    <div class="hero-cta fade-in">
+      <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Lihat Proyek</button>
+      <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hubungi Saya</button>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+</div>
+
+<section id="about">
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p class="section-label">Tentang Saya</p>
+      <h2 class="section-title">Desain adalah<br>bahasa saya.</h2>
+      <p>Saya <strong>Raja Firmansyah</strong>, seorang Graphic Designer yang saat ini berkarier di <strong>OPPO Indonesia</strong> selama 1 tahun. Saya berfokus pada identitas visual, tipografi, dan komunikasi kreatif yang kuat.</p>
+      <p>Sebelum terjun ke dunia desain, saya pernah bekerja sebagai <strong>Barista di Momoo Juice Bar & Coffee</strong> — pengalaman yang mengajarkan saya tentang estetika, detail, dan melayani dengan sepenuh hati.</p>
+      <p>Dengan keahlian di berbagai tools, saya siap mewujudkan visi kreatif Anda menjadi karya visual yang memukau.</p>
+      <div style="margin-top: 24px;">
+        <span class="about-badge">Photoshop</span>
+        <span class="about-badge">Illustrator</span>
+        <span class="about-badge">Figma</span>
+        <span class="about-badge">CorelDRAW</span>
+        <span class="about-badge">Adobe XD</span>
+        <span class="about-badge">Canva</span>
+      </div>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card fade-in">
+        <div class="stat-num">1+</div>
+        <div class="stat-label">Tahun di OPPO</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Proyek Dikerjakan</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Tools Dikuasai</div>
+      </div>
+      <div class="stat-card fade-in">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Dedikasi Penuh</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="skills">
+  <div class="skills-inner">
+    <p class="section-label fade-in">Keahlian</p>
+    <h2 class="section-title fade-in">Tools &amp; Kemampuan</h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-icon">Ps</div>
+        <div class="skill-name">Adobe Photoshop</div>
+        <div class="skill-desc">Manipulasi foto, compositing, retouch profesional, dan efek visual yang memukau.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-w="95"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">Ai</div>
+        <div class="skill-name">Adobe Illustrator</div>
+        <div class="skill-desc">Desain vektor, logo, ilustrasi, dan identitas merek yang skalabel dan tajam.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-w="90"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">Fg</div>
+        <div class="skill-name">Figma</div>
+        <div class="skill-desc">Prototyping interaktif, desain UI/UX, dan kolaborasi tim secara real-time.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-w="85"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">Xd</div>
+        <div class="skill-name">Adobe XD</div>
+        <div class="skill-desc">Wireframing, desain antarmuka, dan presentasi pengalaman pengguna.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-w="80"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">Cd</div>
+        <div class="skill-name">CorelDRAW</div>
+        <div class="skill-desc">Desain layout untuk cetak, banner, spanduk, dan materi promosi.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-w="88"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">Cv</div>
+        <div class="skill-name">Canva</div>
+        <div class="skill-desc">Desain cepat untuk media sosial, presentasi, dan konten digital.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-w="95"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="projects">
+  <p class="section-label fade-in">Portofolio</p>
+  <h2 class="section-title fade-in">Karya Pilihan</h2>
+  <div class="projects-grid">
+    <div class="project-card fade-in">
+      <div class="project-thumb thumb-1"><div class="thumb-pattern"></div>◈</div>
+      <div class="project-info">
+        <div class="project-cat">Brand Identity</div>
+        <div class="project-name">Identitas Visual Brand</div>
+        <div class="project-desc">Perancangan logo, palet warna, dan panduan merek lengkap.</div>
+      </div>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-thumb thumb-2"><div class="thumb-pattern"></div>◇</div>
+      <div class="project-info">
+        <div class="project-cat">Poster Design</div>
+        <div class="project-name">Desain Poster Kampanye</div>
+        <div class="project-desc">Seri poster tipografis dengan konsep visual yang kuat dan modern.</div>
+      </div>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-thumb thumb-3"><div class="thumb-pattern"></div>◉</div>
+      <div class="project-info">
+        <div class="project-cat">Social Media</div>
+        <div class="project-name">Konten Media Sosial OPPO</div>
+        <div class="project-desc">Desain konten visual konsisten untuk kampanye digital OPPO Indonesia.</div>
+      </div>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-thumb thumb-4"><div class="thumb-pattern"></div>◆</div>
+      <div class="project-info">
+        <div class="project-cat">Visual Design</div>
+        <div class="project-name">Materi Promosi & Print</div>
+        <div class="project-desc">Banner, flyer, dan materi cetak untuk berbagai kebutuhan promosi.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="contact">
+  <div class="contact-inner">
+    <p class="section-label fade-in">Kontak</p>
+    <h2 class="section-title fade-in">Mari Berkolaborasi</h2>
+    <div class="contact-grid">
+      <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Nama</label>
+          <input class="form-input" type="text" placeholder="Nama Anda">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="email@anda.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Pesan</label>
+          <textarea class="form-textarea" placeholder="Ceritakan tentang proyek Anda..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="align-self:flex-start">Kirim Pesan</button>
+      </form>
+      <div class="contact-info fade-in">
+        <div class="contact-item">
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-val"><a href="mailto:rajafirmansyah36@gmail.com">rajafirmansyah36@gmail.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">WhatsApp</div>
+          <div class="contact-item-val"><a href="https://wa.me/6285710816817">+62 857-1081-6817</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">Lokasi</div>
+          <div class="contact-item-val">Batam, Kepulauan Riau</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">Media Sosial</div>
+          <div class="social-links">
+            <a class="social-btn" href="https://instagram.com/rajaas.yah" target="_blank">Instagram @rajaas.yah</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">Ketersediaan</div>
+          <div class="contact-item-val">Terbuka untuk proyek freelance &amp; kolaborasi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Raja Firmansyah · Graphic Designer · Batam, Kepulauan Riau</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { const b = e.target.querySelector('.skill-bar'); if (b) b.style.width = b.dataset.w + '%'; } });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skill-card').forEach(c => barObs.observe(c));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = 'Terkirim! ✓';
+    btn.style.background = '#4A7C59';
+    setTimeout(() => { btn.textContent = 'Kirim Pesan'; btn.style.background = ''; e.target.reset(); }, 3000);
+  }
+</script>
+</body>
+</html>
